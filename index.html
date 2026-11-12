@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Víctor Cisternas · Technical Animator</title>
+<meta name="description" content="Portafolio de Víctor Cisternas: animación 3D y 2D, rigging e implementación de personajes en Unity.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎬</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F2F4F8; --surface:#FFFFFF; --ink:#141824; --muted:#555D70; --line:#D5DAE5;
+  --accent:#B45309; --accent-ink:#FFFFFF; --blue:#2F5FD0;
+  --head:"Bricolage Grotesque","Trebuchet MS",sans-serif;
+  --body:"Figtree","Segoe UI",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#10131B; --surface:#181C27; --ink:#EEF0F6; --muted:#A3AABD; --line:#2A3042;
+    --accent:#F4C430; --accent-ink:#10131B; --blue:#7C9CFF;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#10131B; --surface:#181C27; --ink:#EEF0F6; --muted:#A3AABD; --line:#2A3042;
+  --accent:#F4C430; --accent-ink:#10131B; --blue:#7C9CFF;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.05rem/1.65 var(--body)}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 1.25rem}
+header.nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;gap:1.25rem;align-items:center;justify-content:space-between;min-height:56px;flex-wrap:wrap}
+.nav b{font:800 1.05rem var(--head)}
+.nav ul{display:flex;gap:1.1rem;list-style:none;margin:0;padding:0;flex-wrap:wrap;align-items:center}
+.nav a{text-decoration:none;color:var(--muted);font-weight:500;font-size:.95rem}
+.nav a:hover{color:var(--ink)}
+.lang{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:var(--surface)}
+.lang button{font:600 .85rem var(--body);padding:.3rem .75rem;border:0;background:transparent;color:var(--muted);cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+h1,h2,h3{font-family:var(--head);line-height:1.1;margin:0}
+.hero{padding:4.5rem 0 3rem}
+.hero h1{font-size:clamp(2.8rem,9vw,6rem);font-weight:800;letter-spacing:-.03em}
+.hero p.role{font:500 clamp(1.15rem,2.6vw,1.5rem)/1.4 var(--body);color:var(--muted);max-width:34ch;margin:1.2rem 0 0}
+.pipeline{display:grid;grid-template-columns:repeat(4,1fr);margin-top:3rem;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--surface)}
+.pipeline div{padding:1rem 1.1rem;border-right:1px solid var(--line);position:relative}
+.pipeline div:last-child{border-right:0}
+.pipeline small{display:block;color:var(--muted);font-size:.8rem}
+.pipeline span{font:700 1.1rem var(--head)}
+.pipeline div::after{content:"";position:absolute;left:0;bottom:0;height:4px;background:var(--accent);width:0;animation:fill .9s ease-out forwards}
+.pipeline div:nth-child(2)::after{animation-delay:.25s}
+.pipeline div:nth-child(3)::after{animation-delay:.5s}
+.pipeline div:nth-child(4)::after{animation-delay:.75s}
+@keyframes fill{to{width:100%}}
+@media (prefers-reduced-motion:reduce){.pipeline div::after{animation:none;width:100%}html{scroll-behavior:auto}}
+section{padding:3.5rem 0;border-top:1px solid var(--line)}
+section>.wrap>h2{font-size:clamp(1.9rem,4.5vw,2.8rem);margin-bottom:1.5rem}
+.lead{max-width:62ch}
+.lead p{margin:0 0 1rem}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;list-style:none;padding:0;margin:1.5rem 0 0}
+.chips li{padding:.35rem .8rem;border:1px solid var(--line);border-radius:999px;background:var(--surface);font-weight:500;font-size:.95rem}
+.grid{display:grid;gap:1.5rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr))}
+figure{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+figure video,figure img{display:block;width:100%;height:auto;background:#000;aspect-ratio:16/9;object-fit:cover}
+figure.wide{grid-column:1/-1}
+figcaption{padding:.9rem 1.1rem 1.1rem}
+figcaption h3{font-size:1.15rem;margin-bottom:.25rem}
+figcaption p{margin:0;color:var(--muted);font-size:.95rem}
+.sub{font:700 1.3rem var(--head);margin:2.5rem 0 1rem}
+.contact a.mail{font:800 clamp(1.4rem,4.5vw,2.6rem)/1.2 var(--head);word-break:break-all;text-decoration-thickness:3px;text-underline-offset:6px;text-decoration-color:var(--accent)}
+.contact ul{list-style:none;padding:0;margin:1.5rem 0 0;display:flex;gap:1rem 2rem;flex-wrap:wrap}
+footer{padding:2rem 0 3rem;color:var(--muted);font-size:.9rem;border-top:1px solid var(--line)}
+@media (max-width:640px){.pipeline{grid-template-columns:1fr 1fr}.pipeline div:nth-child(2){border-right:0}.pipeline div:nth-child(-n+2){border-bottom:1px solid var(--line)}}
+</style>
+</head>
+<body>
+<header class="nav"><div class="wrap">
+  <b>Víctor Cisternas</b>
+  <nav aria-label="Principal"><ul>
+    <li><a href="#sobre-mi" data-en="About me">Sobre mí</a></li>
+    <li><a href="#3d">3D</a></li>
+    <li><a href="#videojuegos" data-en="Games">Videojuegos</a></li>
+    <li><a href="#2d">2D</a></li>
+    <li><a href="#personal" data-en="Personal project">Proyecto personal</a></li>
+    <li><a href="#contacto" data-en="Contact">Contacto</a></li>
+    <li><div class="lang" role="group" aria-label="Idioma / Language">
+      <button type="button" data-lang="es" aria-pressed="true">ES</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+    </div></li>
+  </ul></nav>
+</div></header>
+
+<main>
+<div class="wrap hero">
+  <h1>Víctor Cisternas</h1>
+  <p class="role" data-en="Digital animation and characters for video games. Aiming to become a Technical Animator.">Animación digital y personajes para videojuegos. Apunto a ser Technical Animator.</p>
+  <div class="pipeline" aria-label="Flujo de trabajo de personajes">
+    <div><small data-en="Stage 1">Etapa 1</small><span data-en="Modeling">Modelado</span></div>
+    <div><small data-en="Stage 2">Etapa 2</small><span>Rigging</span></div>
+    <div><small data-en="Stage 3">Etapa 3</small><span data-en="Animation">Animación</span></div>
+    <div><small data-en="Stage 4">Etapa 4</small><span data-en="Implementation">Implementación</span></div>
+  </div>
+</div>
+
+<section id="sobre-mi"><div class="wrap">
+  <h2 data-en="About me">Sobre mí</h2>
+  <div class="lead">
+    <p data-en="Hi, I'm Víctor Cisternas, a Digital Animation student with a special interest in creating and implementing characters for video games.">Hola, soy Víctor Cisternas, estudiante de Animación Digital con especial interés en la creación e implementación de personajes para videojuegos.</p>
+    <p data-en="My professional goal is to become a Technical Animator, acting as a bridge between animation and programming. That's why I focus on the full 3D character pipeline: modeling, rigging, animation and implementation inside game engines.">Mi objetivo profesional es desarrollarme como Technical Animator, actuando como un puente entre la animación y la programación. Por eso me enfoco en el flujo completo de desarrollo de personajes 3D: modelado, rigging, animación e implementación dentro de motores de videojuegos.</p>
+    <p data-en="I have experience in university and external projects, where I have strengthened my skills across different areas of production.">Tengo experiencia en proyectos universitarios y externos, donde he fortalecido mis habilidades en distintas áreas de la producción.</p>
+  </div>
+  <p class="sub">Software</p>
+  <ul class="chips">
+    <li>Maya 3D</li><li>Arnold</li><li>Unity</li><li>After Effects</li>
+    <!-- Agrega aquí el resto de tus programas (Blender, ZBrush, Photoshop, etc.) -->
+  </ul>
+</div></section>
+
+<section id="3d"><div class="wrap">
+  <h2 data-en="3D Animation">Animación 3D</h2>
+  <div class="grid">
+    <figure class="wide">
+      <video controls preload="none" src="assets/videos/reel_animation.mp4"></video>
+      <figcaption><h3 data-en="Animation reel">Reel de animación</h3><p data-en="Made in Maya 3D with a workflow of references, blocking, splining and polish. The rigs and models are not my own work: they were taken from agora.community.">Hecho en Maya 3D con un flujo de referencias, blocking, splining y polish. Los rigs y modelos no son de mi autoría: fueron extraídos de agora.community.</p></figcaption>
+    </figure>
+    <figure>
+      <img loading="lazy" src="assets/img/desafio-loop-2025.jpg" alt="Escena del Desafío Loop 2025" data-en-alt="Scene from the Loop Challenge 2025">
+      <figcaption><h3 data-en="Loop Challenge 2025">Desafío Loop 2025</h3><p data-en="I took part in the Chilemonos Loop Challenge 2025 with a Maya 3D animation focused on lighting the space.">Participé en el desafío loop de Chilemonos 2025 con una animación en Maya 3D centrada en la iluminación del espacio.</p></figcaption>
+    </figure>
+    <figure>
+      <video controls preload="none" src="assets/videos/video_rig.mp4"></video>
+      <figcaption><h3 data-en="Modeling and rigging">Modelado y rigging</h3><p data-en="Original character model and full-body rig made in Maya 3D.">Modelado de personaje original y rigging de cuerpo completo en Maya 3D.</p></figcaption>
+    </figure>
+    <figure class="wide">
+      <img loading="lazy" src="assets/img/iluminacion-rendering.jpg" alt="Render de escenario con texturas e iluminación" data-en-alt="Scene render with textures and lighting">
+      <figcaption><h3 data-en="Lighting and rendering">Iluminación y rendering</h3><p data-en="Set texturing and lighting, UV work, different Arnold light types and 3D bump mapping.">Texturizado e iluminación de escenario, uso de UVs, distintos tipos de luces de Arnold y bump mapping 3D.</p></figcaption>
+    </figure>
+  </div>
+</div></section>
+
+<section id="videojuegos"><div class="wrap">
+  <h2 data-en="Games">Videojuegos</h2>
+  <div class="grid">
+    <figure class="wide">
+      <video controls preload="none" src="assets/videos/gameplay_the_horn.mp4"></video>
+      <figcaption><h3>The Horn</h3><p data-en="A game developed with a team, where my role was development and programming in Unity. It is based on the legend of the Camahueto, a mythological creature from Chiloé. It is a Souls-like game, so I built interaction and combat mechanics with NPCs and enemies.">Videojuego desarrollado en equipo, donde mi rol fue el desarrollo y la programación en Unity. Está basado en la leyenda del Camahueto, criatura mitológica de Chiloé. Es un juego tipo Souls, por lo que integré mecánicas de interacción y de combate con NPCs y enemigos.</p></figcaption>
+    </figure>
+    <figure>
+      <video controls preload="none" src="assets/videos/pruebas_1.mp4"></video>
+      <figcaption><h3 data-en="Development tests">Pruebas de desarrollo</h3><p data-en="Footage of the game during development.">Registro del juego durante su desarrollo.</p></figcaption>
+    </figure>
+    <figure>
+      <video controls preload="none" src="assets/videos/pruebas_2.mp4"></video>
+      <figcaption><h3 data-en="Development tests">Pruebas de desarrollo</h3><p data-en="Footage of the game during development.">Registro del juego durante su desarrollo.</p></figcaption>
+    </figure>
+  </div>
+</div></section>
+
+<section id="2d"><div class="wrap">
+  <h2 data-en="2D Animation">Animación 2D</h2>
+  <div class="grid">
+    <figure>
+      <video controls preload="none" src="assets/videos/spot_biobio_conecta.mp4"></video>
+      <figcaption><h3 data-en="Commercial spot for Biobío Conecta">Spot publicitario para Biobío Conecta</h3><p data-en="Animator, illustrator and composer.">Animador, ilustrador y compositor.</p></figcaption>
+    </figure>
+    <figure>
+      <video controls preload="none" src="assets/videos/chinita_frente.mp4"></video>
+      <figcaption><h3 data-en="2D rigging in After Effects">Rigging 2D en After Effects</h3><p data-en="2D rigger and animator.">Rigger y animador 2D.</p></figcaption>
+    </figure>
+    <figure>
+      <video controls preload="none" src="assets/videos/reel_protege_tu_huella.mp4"></video>
+      <figcaption><h3 data-en="Reel for Protege tu huella">Reel para Protege tu huella</h3><p data-en="Main character animator and background illustrator.">Animador del personaje principal e ilustrador de fondos.</p></figcaption>
+    </figure>
+    <figure>
+      <video controls preload="none" src="assets/videos/animatic_los_olvidados.mp4"></video>
+      <figcaption><h3 data-en="Animatic for the series Los olvidados">Animatic de la serie Los olvidados</h3><p data-en="Composer, music and sound effects.">Compositor, música y efectos de sonido.</p></figcaption>
+    </figure>
+    <figure>
+      <video controls preload="none" src="assets/videos/lyrics_enemy.mp4"></video>
+      <figcaption><h3>Lyrics: Enemy</h3><p data-en="Animator, illustrator and composer.">Animador, ilustrador y compositor.</p></figcaption>
+    </figure>
+    <figure>
+      <video controls preload="none" src="assets/videos/caminata_chiloe.mp4"></video>
+      <figcaption><h3 data-en="A walk through Chiloé">Caminata por Chiloé</h3><p data-en="Character animator, background illustrator and composer.">Animador de personajes, ilustrador de fondos y compositor.</p></figcaption>
+    </figure>
+  </div>
+  <p class="sub" data-en="Illustrations">Ilustraciones</p>
+  <div class="grid">
+    <figure><img loading="lazy" src="assets/img/ilustracion-1.jpg" alt="Ilustración 1" data-en-alt="Illustration 1"></figure>
+    <figure><img loading="lazy" src="assets/img/ilustracion-2.jpg" alt="Ilustración 2" data-en-alt="Illustration 2"></figure>
+    <figure><img loading="lazy" src="assets/img/ilustracion-3.jpg" alt="Ilustración 3" data-en-alt="Illustration 3"></figure>
+    <figure><img loading="lazy" src="assets/img/ilustracion-4.jpg" alt="Ilustración 4" data-en-alt="Illustration 4"></figure>
+  </div>
+</div></section>
+
+<section id="personal"><div class="wrap">
+  <h2 data-en="Personal project">Proyecto personal</h2>
+  <p class="lead" data-en="An original character, developed from concept art all the way to being ready to animate.">Un personaje propio, trabajado desde el concept art hasta quedar listo para animar.</p>
+  <div class="grid">
+    <figure><img loading="lazy" src="assets/img/concept-art.jpg" alt="Concept art y model sheet del personaje" data-en-alt="Character concept art and model sheet"><figcaption><h3 data-en="Concept art and model sheet">Concept art y model sheet</h3></figcaption></figure>
+    <figure><img loading="lazy" src="assets/img/sculpt.jpg" alt="Escultura digital del personaje" data-en-alt="Digital sculpt of the character"><figcaption><h3>Sculpt</h3></figcaption></figure>
+    <figure><img loading="lazy" src="assets/img/retopologia-baking.jpg" alt="Retopología y baking" data-en-alt="Retopology and baking"><figcaption><h3 data-en="Retopology and baking">Retopología y baking</h3></figcaption></figure>
+    <figure><img loading="lazy" src="assets/img/rigging.jpg" alt="Rig del personaje" data-en-alt="Character rig"><figcaption><h3>Rigging</h3></figcaption></figure>
+  </div>
+</div></section>
+
+<section id="contacto" class="contact"><div class="wrap">
+  <h2 data-en="Contact">Contacto</h2>
+  <a class="mail" href="mailto:animationvitto@gmail.com">animationvitto@gmail.com</a>
+  <ul>
+    <li><a href="tel:+56958927686">+56 9 5892 7686</a></li>
+    <li><a href="https://www.linkedin.com/in/v%C3%ADctor-cisternas-4a385b278/" target="_blank" rel="noopener">LinkedIn</a></li>
+    <li><a href="https://www.instagram.com/vitto_animation/" target="_blank" rel="noopener">Instagram</a></li>
+  </ul>
+</div></section>
+</main>
+
+<footer><div class="wrap">© <span id="y">2026</span> Víctor Cisternas</div></footer>
+<script>
+document.getElementById("y").textContent=new Date().getFullYear();
+(function(){
+  var T=document.querySelectorAll("[data-en]"), A=document.querySelectorAll("[data-en-alt]"),
+      B=document.querySelectorAll(".lang button"), M=document.querySelector('meta[name="description"]');
+  T.forEach(function(e){e.dataset.es=e.textContent});
+  A.forEach(function(e){e.dataset.esAlt=e.getAttribute("alt")});
+  var ES={title:document.title,desc:M.content},
+      EN={title:"Víctor Cisternas · Technical Animator",desc:"Portfolio of Víctor Cisternas: 3D and 2D animation, rigging and character implementation in Unity."};
+  function set(l){
+    var en=l==="en";
+    T.forEach(function(e){e.textContent=en?e.dataset.en:e.dataset.es});
+    A.forEach(function(e){e.setAttribute("alt",en?e.dataset.enAlt:e.dataset.esAlt)});
+    document.documentElement.lang=en?"en":"es-CL";
+    document.title=(en?EN:ES).title; M.content=(en?EN:ES).desc;
+    B.forEach(function(b){b.setAttribute("aria-pressed",String(b.dataset.lang===l))});
+    try{localStorage.setItem("lang",l)}catch(x){}
+  }
+  B.forEach(function(b){b.addEventListener("click",function(){set(b.dataset.lang)})});
+  var s=null; try{s=localStorage.getItem("lang")}catch(x){}
+  if(s==="en") set("en");
+})();
+</script>
+</body>
+</html>
