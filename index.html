@@ -10,22 +10,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:#F2F4F8; --surface:#FFFFFF; --ink:#141824; --muted:#555D70; --line:#D5DAE5;
-  --accent:#B45309; --accent-ink:#FFFFFF; --blue:#2F5FD0;
-  --head:"Bricolage Grotesque","Trebuchet MS",sans-serif;
-  --body:"Figtree","Segoe UI",system-ui,sans-serif;
-}
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){
-    --bg:#10131B; --surface:#181C27; --ink:#EEF0F6; --muted:#A3AABD; --line:#2A3042;
-    --accent:#F4C430; --accent-ink:#10131B; --blue:#7C9CFF;
-  }
-}
-:root[data-theme="dark"]{
-  --bg:#10131B; --surface:#181C27; --ink:#EEF0F6; --muted:#A3AABD; --line:#2A3042;
-  --accent:#F4C430; --accent-ink:#10131B; --blue:#7C9CFF;
-}
+:root{--bg:#F2F4F8;--surface:#FFFFFF;--ink:#141824;--muted:#555D70;--line:#D5DAE5;--accent:#B45309;--accent-ink:#FFFFFF;--blue:#2F5FD0;--head:"Bricolage Grotesque","Trebuchet MS",sans-serif;--body:"Figtree","Segoe UI",system-ui,sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10131B;--surface:#181C27;--ink:#EEF0F6;--muted:#A3AABD;--line:#2A3042;--accent:#F4C430;--accent-ink:#10131B;--blue:#7C9CFF}}
+:root[data-theme="dark"]{--bg:#10131B;--surface:#181C27;--ink:#EEF0F6;--muted:#A3AABD;--line:#2A3042;--accent:#F4C430;--accent-ink:#10131B;--blue:#7C9CFF}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:72px}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 1.05rem/1.65 var(--body)}
@@ -51,24 +38,35 @@ h1,h2,h3{font-family:var(--head);line-height:1.1;margin:0}
 .pipeline small{display:block;color:var(--muted);font-size:.8rem}
 .pipeline span{font:700 1.1rem var(--head)}
 .pipeline div::after{content:"";position:absolute;left:0;bottom:0;height:4px;background:var(--accent);width:0;animation:fill .9s ease-out forwards}
-.pipeline div:nth-child(2)::after{animation-delay:.25s}
-.pipeline div:nth-child(3)::after{animation-delay:.5s}
-.pipeline div:nth-child(4)::after{animation-delay:.75s}
+.pipeline div:nth-child(2)::after{animation-delay:.25s}.pipeline div:nth-child(3)::after{animation-delay:.5s}.pipeline div:nth-child(4)::after{animation-delay:.75s}
 @keyframes fill{to{width:100%}}
 @media (prefers-reduced-motion:reduce){.pipeline div::after{animation:none;width:100%}html{scroll-behavior:auto}}
 section{padding:3.5rem 0;border-top:1px solid var(--line)}
 section>.wrap>h2{font-size:clamp(1.9rem,4.5vw,2.8rem);margin-bottom:1.5rem}
-.lead{max-width:62ch}
-.lead p{margin:0 0 1rem}
+.lead{max-width:62ch}.lead p{margin:0 0 1rem}
 .chips{display:flex;flex-wrap:wrap;gap:.5rem;list-style:none;padding:0;margin:1.5rem 0 0}
 .chips li{padding:.35rem .8rem;border:1px solid var(--line);border-radius:999px;background:var(--surface);font-weight:500;font-size:.95rem}
 .grid{display:grid;gap:1.5rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr))}
 figure{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden}
-figure video,figure img{display:block;width:100%;height:auto;background:#000;aspect-ratio:16/9;object-fit:cover}
 figure.wide{grid-column:1/-1}
+figure img{display:block;width:100%;height:auto}
+figure img.fit{aspect-ratio:4/5;object-fit:contain;background:#303030}
+.video{aspect-ratio:16/9;background:#000}
+.video.v{aspect-ratio:9/16;max-width:min(100%,340px);margin:0 auto}
+.video iframe{width:100%;height:100%;border:0;display:block}
 figcaption{padding:.9rem 1.1rem 1.1rem}
 figcaption h3{font-size:1.15rem;margin-bottom:.25rem}
 figcaption p{margin:0;color:var(--muted);font-size:.95rem}
+.tl{list-style:none;margin:0;padding:0;border-left:2px solid var(--line);max-width:760px}
+.tl li{position:relative;padding:0 0 1.9rem 1.5rem}
+.tl li::before{content:"";position:absolute;left:-8px;top:.4rem;width:14px;height:14px;border-radius:50%;background:var(--bg);border:3px solid var(--line)}
+.tl li.now::before{background:var(--accent);border-color:var(--accent)}
+.tl h3{font-size:1.2rem}
+.tl .org{font-weight:600;margin:.15rem 0 0}
+.tl .meta{color:var(--muted);font-size:.9rem;margin:.1rem 0 .5rem}
+.tl p.d{margin:0;color:var(--muted);max-width:62ch}
+.edu{margin-top:1rem;padding:1rem 1.2rem;border:1px solid var(--line);border-radius:10px;background:var(--surface);max-width:760px}
+.edu b{font-family:var(--head)}
 .sub{font:700 1.3rem var(--head);margin:2.5rem 0 1rem}
 .contact a.mail{font:800 clamp(1.4rem,4.5vw,2.6rem)/1.2 var(--head);word-break:break-all;text-decoration-thickness:3px;text-underline-offset:6px;text-decoration-color:var(--accent)}
 .contact ul{list-style:none;padding:0;margin:1.5rem 0 0;display:flex;gap:1rem 2rem;flex-wrap:wrap}
@@ -81,18 +79,15 @@ footer{padding:2rem 0 3rem;color:var(--muted);font-size:.9rem;border-top:1px sol
   <b>Víctor Cisternas</b>
   <nav aria-label="Principal"><ul>
     <li><a href="#sobre-mi" data-en="About me">Sobre mí</a></li>
+    <li><a href="#experiencia" data-en="Experience">Experiencia</a></li>
     <li><a href="#3d">3D</a></li>
     <li><a href="#videojuegos" data-en="Games">Videojuegos</a></li>
     <li><a href="#2d">2D</a></li>
     <li><a href="#personal" data-en="Personal project">Proyecto personal</a></li>
     <li><a href="#contacto" data-en="Contact">Contacto</a></li>
-    <li><div class="lang" role="group" aria-label="Idioma / Language">
-      <button type="button" data-lang="es" aria-pressed="true">ES</button>
-      <button type="button" data-lang="en" aria-pressed="false">EN</button>
-    </div></li>
+    <li><div class="lang" role="group" aria-label="Idioma / Language"><button type="button" data-lang="es" aria-pressed="true">ES</button><button type="button" data-lang="en" aria-pressed="false">EN</button></div></li>
   </ul></nav>
 </div></header>
-
 <main>
 <div class="wrap hero">
   <h1>Víctor Cisternas</h1>
@@ -104,7 +99,6 @@ footer{padding:2rem 0 3rem;color:var(--muted);font-size:.9rem;border-top:1px sol
     <div><small data-en="Stage 4">Etapa 4</small><span data-en="Implementation">Implementación</span></div>
   </div>
 </div>
-
 <section id="sobre-mi"><div class="wrap">
   <h2 data-en="About me">Sobre mí</h2>
   <div class="lead">
@@ -113,100 +107,32 @@ footer{padding:2rem 0 3rem;color:var(--muted);font-size:.9rem;border-top:1px sol
     <p data-en="I have experience in university and external projects, where I have strengthened my skills across different areas of production.">Tengo experiencia en proyectos universitarios y externos, donde he fortalecido mis habilidades en distintas áreas de la producción.</p>
   </div>
   <p class="sub">Software</p>
-  <ul class="chips">
-    <li>Maya 3D</li><li>Arnold</li><li>Unity</li><li>After Effects</li>
-    <!-- Agrega aquí el resto de tus programas (Blender, ZBrush, Photoshop, etc.) -->
-  </ul>
+  <ul class="chips"><li>Maya 3D</li><li>Blender</li><li>Arnold</li><li>Unity</li><li>After Effects</li><li>Duik</li></ul>
 </div></section>
-
+<section id="experiencia"><div class="wrap">
+  <h2 data-en="Experience">Experiencia</h2>
+  <ol class="tl"><li class=now><h3 data-en="Props and character modeler">Modelador de props y personajes</h3><p class="org">Alikan Games Studio</p><p class="meta"><span data-en="Present">Actualidad</span></p><p class="d" data-en="Modeling of props and characters for video games.">Modelado de props y personajes para videojuegos.</p></li><li class=now><h3 data-en="Freelance motion graphics animator">Animador freelance de motion graphics</h3><p class="org">NW Sports</p><p class="meta"><span data-en="Present">Actualidad</span></p><p class="d" data-en="Motion graphics animation as a freelancer.">Animación de motion graphics como freelance.</p></li><li><h3 data-en="University teaching assistant">Profesor universitario asistente</h3><p class="org">Universidad San Sebastián</p><p class="meta"><span data-en="March – June 2026">Marzo – Junio 2026</span> · Concepción</p><p class="d" data-en="Teaching assistant for the course Lighting and Rendering.">Ayudante de la asignatura Iluminación y rendering.</p></li><li><h3 data-en="2D cut-out animator">Animador 2D cut out</h3><p class="org">Bitplay – Creatividad Digital</p><p class="meta"><span data-en="May – August 2025">Mayo – Agosto 2025</span> · Concepción</p><p class="d" data-en="Character animation for scenes of an animated short made for a Heritage Day 2025 event, developed by the Municipality of Quinta Normal.">Animación de personajes para escenas de un corto animado realizado para un evento del Día del Patrimonio 2025, desarrollado por la Municipalidad de Quinta Normal.</p></li><li><h3 data-en="2D cut-out animator">Animador 2D cut out</h3><p class="org">Protege tu huella</p><p class="meta"><span data-en="March – May 2025">Marzo – Mayo 2025</span> · Concepción</p><p class="d" data-en="Animated advertising spot: 2D character animation and background illustration.">Spot publicitario animado: animación 2D de personajes e ilustración de fondos.</p></li><li><h3 data-en="University teaching assistant">Profesor universitario asistente</h3><p class="org">Universidad San Sebastián</p><p class="meta"><span data-en="August 2024 – January 2025">Agosto 2024 – Enero 2025</span> · Concepción</p><p class="d" data-en="Teaching assistant for the course Digital Fabrication, Prototyping and Validation.">Ayudante de la asignatura Fabricación digital, Prototipado y Validación.</p></li><li><h3 data-en="University teaching assistant">Profesor universitario asistente</h3><p class="org">Universidad San Sebastián</p><p class="meta"><span data-en="August 2024 – January 2025">Agosto 2024 – Enero 2025</span> · Concepción</p><p class="d" data-en="Teaching assistant for the course Creative Processes, Artificial Intelligence and Data Science II.">Ayudante de la asignatura Procesos creativos, Inteligencia artificial y Ciencias de datos II.</p></li><li><h3 data-en="University teaching assistant">Profesor universitario asistente</h3><p class="org">Universidad San Sebastián</p><p class="meta"><span data-en="April – August 2024">Abril – Agosto 2024</span> · Concepción</p><p class="d" data-en="Teaching assistant for the course Introduction to 3D Modeling and Animation.">Ayudante de la asignatura Introducción al modelado y animación 3D.</p></li><li><h3 data-en="2D animator">Animador 2D</h3><p class="org">NOTBUG STUDIOS</p><p class="meta"><span data-en="May – August 2024">Mayo – Agosto 2024</span> · Concepción</p><p class="d" data-en="Collaboration on a video game project, developing 2D animations, VFX and illustrations.">Colaboración en un proyecto de videojuego, desarrollando animaciones 2D, VFX e ilustraciones.</p></li></ol>
+  <div class="edu"><b data-en="Education">Educación</b><br><span data-en="Digital Animation, Games specialization · Universidad San Sebastián (2023 – 2027)">Animación digital, Mención en Videojuegos · Universidad San Sebastián (2023 – 2027)</span></div>
+</div></section>
 <section id="3d"><div class="wrap">
   <h2 data-en="3D Animation">Animación 3D</h2>
-  <div class="grid">
-    <figure class="wide">
-      <video controls preload="none" src="assets/videos/reel_animation.mp4"></video>
-      <figcaption><h3 data-en="Animation reel">Reel de animación</h3><p data-en="Made in Maya 3D with a workflow of references, blocking, splining and polish. The rigs and models are not my own work: they were taken from agora.community.">Hecho en Maya 3D con un flujo de referencias, blocking, splining y polish. Los rigs y modelos no son de mi autoría: fueron extraídos de agora.community.</p></figcaption>
-    </figure>
-    <figure>
-      <img loading="lazy" src="assets/img/desafio-loop-2025.jpg" alt="Escena del Desafío Loop 2025" data-en-alt="Scene from the Loop Challenge 2025">
-      <figcaption><h3 data-en="Loop Challenge 2025">Desafío Loop 2025</h3><p data-en="I took part in the Chilemonos Loop Challenge 2025 with a Maya 3D animation focused on lighting the space.">Participé en el desafío loop de Chilemonos 2025 con una animación en Maya 3D centrada en la iluminación del espacio.</p></figcaption>
-    </figure>
-    <figure>
-      <video controls preload="none" src="assets/videos/video_rig.mp4"></video>
-      <figcaption><h3 data-en="Modeling and rigging">Modelado y rigging</h3><p data-en="Original character model and full-body rig made in Maya 3D.">Modelado de personaje original y rigging de cuerpo completo en Maya 3D.</p></figcaption>
-    </figure>
-    <figure class="wide">
-      <img loading="lazy" src="assets/img/iluminacion-rendering.jpg" alt="Render de escenario con texturas e iluminación" data-en-alt="Scene render with textures and lighting">
-      <figcaption><h3 data-en="Lighting and rendering">Iluminación y rendering</h3><p data-en="Set texturing and lighting, UV work, different Arnold light types and 3D bump mapping.">Texturizado e iluminación de escenario, uso de UVs, distintos tipos de luces de Arnold y bump mapping 3D.</p></figcaption>
-    </figure>
-  </div>
+  <div class="grid"><figure><div class="video v"><iframe src="https://www.youtube-nocookie.com/embed/qur8XuO6cK8" title="Reel de animación 3D" loading="lazy" allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div><figcaption><h3 data-en="3D animation reel">Reel de animación 3D</h3><p data-en="3D animation in Maya with a workflow of references, blocking, splining and polish. The rigs and models are not my own work: they were taken from agora.community.">Animación 3D en Maya con flujo de referencias, blocking, splining y polish. Los rigs y modelos no son de mi autoría: fueron extraídos de agora.community.</p></figcaption></figure><figure><div class="video"><iframe src="https://www.youtube-nocookie.com/embed/Lrtabe6q46s" title="Irene: modelado y rigging en Blender" loading="lazy" allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div><figcaption><h3 data-en="Irene: modeling and rigging in Blender">Irene: modelado y rigging en Blender</h3><p data-en="Role: character modeler and rigger.">Rol: modelador y rigger del personaje.</p></figcaption></figure></div>
+  <p class="sub" data-en="Irene: rig and model">Irene: rig y modelo</p>
+  <div class="grid"><figure><img class="fit" loading="lazy" src="assets/img/irene-rig-frente.jpg" alt="Rig de Irene, vista frontal" data-en-alt="Irene rig, front view"></figure><figure><img class="fit" loading="lazy" src="assets/img/irene-rig-lado.jpg" alt="Rig de Irene, vista lateral" data-en-alt="Irene rig, side view"></figure><figure><img loading="lazy" src="assets/img/irene-detalle.jpg" alt="Detalle del rostro de Irene" data-en-alt="Close-up of Irene&#x27;s face"></figure><figure><img loading="lazy" src="assets/img/irene-wireframe.jpg" alt="Wireframe del rostro de Irene" data-en-alt="Wireframe of Irene&#x27;s face"></figure></div>
 </div></section>
-
 <section id="videojuegos"><div class="wrap">
   <h2 data-en="Games">Videojuegos</h2>
-  <div class="grid">
-    <figure class="wide">
-      <video controls preload="none" src="assets/videos/gameplay_the_horn.mp4"></video>
-      <figcaption><h3>The Horn</h3><p data-en="A game developed with a team, where my role was development and programming in Unity. It is based on the legend of the Camahueto, a mythological creature from Chiloé. It is a Souls-like game, so I built interaction and combat mechanics with NPCs and enemies.">Videojuego desarrollado en equipo, donde mi rol fue el desarrollo y la programación en Unity. Está basado en la leyenda del Camahueto, criatura mitológica de Chiloé. Es un juego tipo Souls, por lo que integré mecánicas de interacción y de combate con NPCs y enemigos.</p></figcaption>
-    </figure>
-    <figure>
-      <video controls preload="none" src="assets/videos/pruebas_1.mp4"></video>
-      <figcaption><h3 data-en="Development tests">Pruebas de desarrollo</h3><p data-en="Footage of the game during development.">Registro del juego durante su desarrollo.</p></figcaption>
-    </figure>
-    <figure>
-      <video controls preload="none" src="assets/videos/pruebas_2.mp4"></video>
-      <figcaption><h3 data-en="Development tests">Pruebas de desarrollo</h3><p data-en="Footage of the game during development.">Registro del juego durante su desarrollo.</p></figcaption>
-    </figure>
-  </div>
+  <div class="grid"><figure class="wide"><div class="video"><iframe src="https://www.youtube-nocookie.com/embed/Tj9aHxYY0qI" title="The Horn · Gameplay" loading="lazy" allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div><figcaption><h3 data-en="The Horn · Gameplay">The Horn · Gameplay</h3><p data-en="A game developed with a team. My role was programming and integrating animations and assets in Unity, in other words, technical animator work. It is based on the legend of the Camahueto, a mythological creature from Chiloé. It is a Souls-like game, so I built interaction and combat mechanics with NPCs and enemies.">Videojuego desarrollado en equipo. Mi rol fue la programación y la integración de animaciones y assets en Unity, es decir, trabajo de animador técnico. Está basado en la leyenda del Camahueto, criatura mitológica de Chiloé. Es un juego tipo Souls, por lo que integré mecánicas de interacción y de combate con NPCs y enemigos.</p></figcaption></figure><figure><div class="video"><iframe src="https://www.youtube-nocookie.com/embed/u0kEHG4jJTU" title="The Horn · Pruebas en Unity" loading="lazy" allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div><figcaption><h3 data-en="The Horn · Unity tests">The Horn · Pruebas en Unity</h3><p data-en="Processes inside Unity used to build interactions.">Procesos dentro de Unity para generar interacciones.</p></figcaption></figure></div>
 </div></section>
-
 <section id="2d"><div class="wrap">
   <h2 data-en="2D Animation">Animación 2D</h2>
-  <div class="grid">
-    <figure>
-      <video controls preload="none" src="assets/videos/spot_biobio_conecta.mp4"></video>
-      <figcaption><h3 data-en="Commercial spot for Biobío Conecta">Spot publicitario para Biobío Conecta</h3><p data-en="Animator, illustrator and composer.">Animador, ilustrador y compositor.</p></figcaption>
-    </figure>
-    <figure>
-      <video controls preload="none" src="assets/videos/chinita_frente.mp4"></video>
-      <figcaption><h3 data-en="2D rigging in After Effects">Rigging 2D en After Effects</h3><p data-en="2D rigger and animator.">Rigger y animador 2D.</p></figcaption>
-    </figure>
-    <figure>
-      <video controls preload="none" src="assets/videos/reel_protege_tu_huella.mp4"></video>
-      <figcaption><h3 data-en="Reel for Protege tu huella">Reel para Protege tu huella</h3><p data-en="Main character animator and background illustrator.">Animador del personaje principal e ilustrador de fondos.</p></figcaption>
-    </figure>
-    <figure>
-      <video controls preload="none" src="assets/videos/animatic_los_olvidados.mp4"></video>
-      <figcaption><h3 data-en="Animatic for the series Los olvidados">Animatic de la serie Los olvidados</h3><p data-en="Composer, music and sound effects.">Compositor, música y efectos de sonido.</p></figcaption>
-    </figure>
-    <figure>
-      <video controls preload="none" src="assets/videos/lyrics_enemy.mp4"></video>
-      <figcaption><h3>Lyrics: Enemy</h3><p data-en="Animator, illustrator and composer.">Animador, ilustrador y compositor.</p></figcaption>
-    </figure>
-    <figure>
-      <video controls preload="none" src="assets/videos/caminata_chiloe.mp4"></video>
-      <figcaption><h3 data-en="A walk through Chiloé">Caminata por Chiloé</h3><p data-en="Character animator, background illustrator and composer.">Animador de personajes, ilustrador de fondos y compositor.</p></figcaption>
-    </figure>
-  </div>
-  <p class="sub" data-en="Illustrations">Ilustraciones</p>
-  <div class="grid">
-    <figure><img loading="lazy" src="assets/img/ilustracion-1.jpg" alt="Ilustración 1" data-en-alt="Illustration 1"></figure>
-    <figure><img loading="lazy" src="assets/img/ilustracion-2.jpg" alt="Ilustración 2" data-en-alt="Illustration 2"></figure>
-    <figure><img loading="lazy" src="assets/img/ilustracion-3.jpg" alt="Ilustración 3" data-en-alt="Illustration 3"></figure>
-    <figure><img loading="lazy" src="assets/img/ilustracion-4.jpg" alt="Ilustración 4" data-en-alt="Illustration 4"></figure>
-  </div>
+  <div class="grid"><figure><div class="video"><iframe src="https://www.youtube-nocookie.com/embed/NWytsfwuWbQ" title="Caminata por Chiloé" loading="lazy" allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div><figcaption><h3 data-en="A walk through Chiloé">Caminata por Chiloé</h3><p data-en="Role: main character animator and background designer.">Rol: animador del personaje principal y diseñador de fondos.</p></figcaption></figure><figure><div class="video"><iframe src="https://www.youtube-nocookie.com/embed/kBkIjVKFVyo" title="Rigging 2D: Chinita (Duik, After Effects)" loading="lazy" allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div><figcaption><h3 data-en="2D rigging: Chinita (Duik, After Effects)">Rigging 2D: Chinita (Duik, After Effects)</h3><p data-en="Role: character rigger.">Rol: rigger del personaje.</p></figcaption></figure><figure><div class="video v"><iframe src="https://www.youtube-nocookie.com/embed/38EaYzH4gfs" title="Reel Protege tu huella" loading="lazy" allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div><figcaption><h3 data-en="Reel for Protege tu huella">Reel Protege tu huella</h3><p data-en="Role: animator and background designer.">Rol: animador y diseñador de fondos.</p></figcaption></figure><figure><div class="video"><iframe src="https://www.youtube-nocookie.com/embed/6dSlt-L3TaU" title="Lyrics: Enemy" loading="lazy" allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div><figcaption><h3 data-en="Lyrics: Enemy">Lyrics: Enemy</h3><p data-en="Role: animator and compositing artist.">Rol: animador y compositor.</p></figcaption></figure></div>
 </div></section>
-
 <section id="personal"><div class="wrap">
-  <h2 data-en="Personal project">Proyecto personal</h2>
-  <p class="lead" data-en="An original character, developed from concept art all the way to being ready to animate.">Un personaje propio, trabajado desde el concept art hasta quedar listo para animar.</p>
-  <div class="grid">
-    <figure><img loading="lazy" src="assets/img/concept-art.jpg" alt="Concept art y model sheet del personaje" data-en-alt="Character concept art and model sheet"><figcaption><h3 data-en="Concept art and model sheet">Concept art y model sheet</h3></figcaption></figure>
-    <figure><img loading="lazy" src="assets/img/sculpt.jpg" alt="Escultura digital del personaje" data-en-alt="Digital sculpt of the character"><figcaption><h3>Sculpt</h3></figcaption></figure>
-    <figure><img loading="lazy" src="assets/img/retopologia-baking.jpg" alt="Retopología y baking" data-en-alt="Retopology and baking"><figcaption><h3 data-en="Retopology and baking">Retopología y baking</h3></figcaption></figure>
-    <figure><img loading="lazy" src="assets/img/rigging.jpg" alt="Rig del personaje" data-en-alt="Character rig"><figcaption><h3>Rigging</h3></figcaption></figure>
-  </div>
+  <h2 data-en="Personal project: Bull">Proyecto personal: Bull</h2>
+  <p class="lead" data-en="An original character, developed from concept art through sculpting and retopology. The rig and animation are still in progress.">Un personaje propio, trabajado desde el concept art hasta el sculpt y la retopología. El rig y la animación siguen en desarrollo.</p>
+  <div class="grid"><figure><img loading="lazy" src="assets/img/bull-concept-art.jpg" alt="Concept art de Bull" data-en-alt="Bull concept art"><figcaption><h3 data-en="Concept art">Concept art</h3></figcaption></figure><figure><img loading="lazy" src="assets/img/bull-model-sheet.jpg" alt="Model sheet de Bull" data-en-alt="Bull model sheet"><figcaption><h3 data-en="Model sheet">Model sheet</h3></figcaption></figure><figure><img loading="lazy" src="assets/img/bull-sculpt.jpg" alt="Sculpt de Bull en vistas trasera, frontal y lateral" data-en-alt="Bull sculpt, back, front and side views"><figcaption><h3 data-en="Sculpt">Sculpt</h3></figcaption></figure><figure><img loading="lazy" src="assets/img/bull-sculpt-detalle.jpg" alt="Sculpt de Bull con detalle de pelaje" data-en-alt="Bull sculpt with fur detail"><figcaption><h3 data-en="Sculpt: detail and fur">Sculpt: detalle y pelaje</h3></figcaption></figure><figure><img loading="lazy" src="assets/img/bull-topologia-frente.jpg" alt="Retopología de Bull, vista frontal" data-en-alt="Bull retopology, front view"><figcaption><h3 data-en="Retopology: front">Retopología: frente</h3></figcaption></figure><figure><img loading="lazy" src="assets/img/bull-topologia-espalda.jpg" alt="Retopología de Bull, vista trasera" data-en-alt="Bull retopology, back view"><figcaption><h3 data-en="Retopology: back">Retopología: espalda</h3></figcaption></figure><figure><img loading="lazy" src="assets/img/bull-rig.jpg" alt="Primer rig de Bull, vista frontal" data-en-alt="First rig of Bull, front view"><figcaption><h3 data-en="Rig (in progress)">Rig (en desarrollo)</h3></figcaption></figure></div>
 </div></section>
-
 <section id="contacto" class="contact"><div class="wrap">
   <h2 data-en="Contact">Contacto</h2>
   <a class="mail" href="mailto:animationvitto@gmail.com">animationvitto@gmail.com</a>
@@ -217,29 +143,24 @@ footer{padding:2rem 0 3rem;color:var(--muted);font-size:.9rem;border-top:1px sol
   </ul>
 </div></section>
 </main>
-
 <footer><div class="wrap">© <span id="y">2026</span> Víctor Cisternas</div></footer>
 <script>
 document.getElementById("y").textContent=new Date().getFullYear();
 (function(){
-  var T=document.querySelectorAll("[data-en]"), A=document.querySelectorAll("[data-en-alt]"),
-      B=document.querySelectorAll(".lang button"), M=document.querySelector('meta[name="description"]');
+  var T=document.querySelectorAll("[data-en]"),A=document.querySelectorAll("[data-en-alt]"),B=document.querySelectorAll(".lang button"),M=document.querySelector('meta[name="description"]');
   T.forEach(function(e){e.dataset.es=e.textContent});
   A.forEach(function(e){e.dataset.esAlt=e.getAttribute("alt")});
-  var ES={title:document.title,desc:M.content},
-      EN={title:"Víctor Cisternas · Technical Animator",desc:"Portfolio of Víctor Cisternas: 3D and 2D animation, rigging and character implementation in Unity."};
-  function set(l){
-    var en=l==="en";
+  var ES={title:document.title,desc:M.content},EN={title:"Víctor Cisternas · Technical Animator",desc:"Portfolio of Víctor Cisternas: 3D and 2D animation, rigging and character implementation in Unity."};
+  function set(l){var en=l==="en";
     T.forEach(function(e){e.textContent=en?e.dataset.en:e.dataset.es});
     A.forEach(function(e){e.setAttribute("alt",en?e.dataset.enAlt:e.dataset.esAlt)});
     document.documentElement.lang=en?"en":"es-CL";
-    document.title=(en?EN:ES).title; M.content=(en?EN:ES).desc;
+    document.title=(en?EN:ES).title;M.content=(en?EN:ES).desc;
     B.forEach(function(b){b.setAttribute("aria-pressed",String(b.dataset.lang===l))});
-    try{localStorage.setItem("lang",l)}catch(x){}
-  }
+    try{localStorage.setItem("lang",l)}catch(x){}}
   B.forEach(function(b){b.addEventListener("click",function(){set(b.dataset.lang)})});
-  var s=null; try{s=localStorage.getItem("lang")}catch(x){}
-  if(s==="en") set("en");
+  var s=null;try{s=localStorage.getItem("lang")}catch(x){}
+  if(s==="en")set("en");
 })();
 </script>
 </body>
