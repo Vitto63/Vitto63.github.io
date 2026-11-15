@@ -95,6 +95,9 @@ dialog#lb[open]{display:flex;flex-direction:column;align-items:center;justify-co
 #lb button{position:fixed;background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:999px;width:44px;height:44px;font-size:1.6rem;line-height:1;cursor:pointer}
 #lb button:hover{background:rgba(255,255,255,.25)}
 #lb .x{top:1rem;right:1rem}#lb .pv{left:1rem;top:50%}#lb .nx{right:1rem;top:50%}
+.about{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:2.5rem;align-items:start}
+.me{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--line);box-shadow:10px 10px 0 var(--accent)}
+@media (max-width:760px){.about{grid-template-columns:1fr;gap:1.75rem}.me{order:-1;max-width:240px;box-shadow:6px 6px 0 var(--accent)}}
 .sub{font:700 1.3rem var(--head);margin:2.5rem 0 1rem}
 .contact a.mail{font:800 clamp(1.4rem,4.5vw,2.6rem)/1.2 var(--head);word-break:break-all;text-decoration-thickness:3px;text-underline-offset:6px;text-decoration-color:var(--accent)}
 .contact ul{list-style:none;padding:0;margin:1.5rem 0 0;display:flex;gap:1rem 2rem;flex-wrap:wrap}
@@ -131,13 +134,17 @@ footer{padding:2rem 0 3rem;color:var(--muted);font-size:.9rem;border-top:1px sol
 </div>
 <section id="sobre-mi"><div class="wrap">
   <h2 data-en="About me">Sobre mí</h2>
+  <div class="about"><div>
   <div class="lead">
     <p data-en="Hi, I'm Víctor Cisternas, a Digital Animation student with a special interest in creating and implementing characters for video games.">Hola, soy Víctor Cisternas, estudiante de Animación Digital con especial interés en la creación e implementación de personajes para videojuegos.</p>
     <p data-en="My professional goal is to become a Technical Animator, acting as a bridge between animation and programming. That's why I focus on the full 3D character pipeline: modeling, rigging, animation and implementation inside game engines.">Mi objetivo profesional es desarrollarme como Technical Animator, actuando como un puente entre la animación y la programación. Por eso me enfoco en el flujo completo de desarrollo de personajes 3D: modelado, rigging, animación e implementación dentro de motores de videojuegos.</p>
     <p data-en="I have experience in university and external projects, where I have strengthened my skills across different areas of production.">Tengo experiencia en proyectos universitarios y externos, donde he fortalecido mis habilidades en distintas áreas de la producción.</p>
   </div>
   <p class="sub">Software</p>
-  <ul class="chips"><li>Maya 3D</li><li>Blender</li><li>Arnold</li><li>Unity</li><li>After Effects</li><li>Duik</li></ul>
+  <ul class="chips"><li>Maya 3D</li><li>Blender</li><li>Unity</li><li>Substance Painter</li><li>After Effects</li></ul>
+  </div>
+  <img class="me" src="assets/img/victor.jpg" alt="Retrato de Víctor Cisternas" data-en-alt="Portrait of Víctor Cisternas" width="545" height="600">
+  </div>
 </div></section>
 <section id="experiencia"><div class="wrap">
   <h2 data-en="Experience">Experiencia</h2>
